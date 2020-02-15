@@ -7,3 +7,66 @@
 // VER TAREAS: debe listar todas las tareas hasta el momento
 // SALIR: debe terminar la ejecución del programa
 // El programa debe mostrar el menú de opciones, y permitir ingresar una opción.Si la opción ingresada es incorrecta, debe mostrar nuevamente el menú.Si se elige SALIR, debe terminar el programa.Si se elige alguna de las otras opciones, debe realizar las acciones correspondientes, y una vez terminada, volver al menú de opciones.
+
+// defino variables dinámicas
+let tareas = [];
+let tareaUsuario = "";
+let eliminar = false;
+let usuarioElige = "";
+
+// defino mensaje de opciones
+const opciones = `Elija una opción:
+1- Agregar una tarea
+2- Modificar una tarea
+3- Eliminar una tarea
+4- Ver tareas
+5- Salir`;
+
+
+// pregunto al usuario que opción elige
+while (usuarioElige != "5") { // mientras no elija salir
+    usuarioElige = prompt(`${opciones}`);
+
+
+    switch (usuarioElige) {
+        case "1": /// intento ponerle número a las tareas, pero cuando se elimina 1 se
+            tareas.push(prompt("Ingrese la tarea que desea agregar") + "\n");
+            break
+        case "2":
+            tareaUsuario = Number(prompt(`Ingrese el número de tarea que desea modificar:\n ${tareas.join('')}`));
+            if (tareaUsuario >= tareas.length) {
+                alert("Esa tarea no existe.\n" + opciones);
+            } else {
+                alert(`Elegiste modificar la tarea: ${tareas[tareaUsuario - 1]}`);
+                tareas[tareaUsuario - 1] = prompt("Ingrese la tarea modificada") + "\n";
+            }
+            break
+        case "3":
+            tareaUsuario = Number(prompt(`Ingrese el número de tarea que desea eliminar:\n ${tareas.join('')}`));
+            if (tareaUsuario >= tareas.length) {
+                alert("Esa tarea no existe.\n" + opciones);
+            } else {
+                eliminar = confirm(`Elegiste eliminar la tarea:\n${tareas[tareaUsuario - 1]}
+                Confirma eliminar?`);
+                if (eliminar === true) {
+                    tareas.splice((tareaUsuario - 1), 1);
+                } else {
+                    alert("Acción cancelada")
+                }
+            }
+            break
+        case "4":
+            alert(`Lista de tareas:\n${tareas.join('')}`);
+            break
+
+        case "5":
+            break
+
+        default:
+            alert("La opción ingresada no es correcta.\n" + opciones);
+
+    }
+
+}
+
+alert("Adios");
