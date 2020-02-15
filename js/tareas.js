@@ -23,27 +23,43 @@ const opciones = `Elija una opción:
 5- Salir`;
 
 
+
+// defino variable dinámica de la lista de tareas;
+let listaTareas = "";
+let i = 0;
+
 // pregunto al usuario que opción elige
 while (usuarioElige != "5") { // mientras no elija salir
-    usuarioElige = prompt(`${opciones}`);
+    i = 0
+    listaTareas = "";
 
+    for (i; i < tareas.length; i++) {
+        listaTareas += `\n${i + 1}) ${tareas[i]}`
+    }
+
+    if (tareas.length < 1) {
+        usuarioElige = prompt(`Aún no hay tareas\n${opciones}`);
+    } else {
+        usuarioElige = prompt(`${opciones}`);
+
+    }
 
     switch (usuarioElige) {
         case "1": /// intento ponerle número a las tareas, pero cuando se elimina 1 se
             tareas.push(prompt("Ingrese la tarea que desea agregar") + "\n");
             break
         case "2":
-            tareaUsuario = Number(prompt(`Ingrese el número de tarea que desea modificar:\n ${tareas.join('')}`));
-            if (tareaUsuario >= tareas.length) {
+            tareaUsuario = Number(prompt(`Ingrese el número de tarea que desea modificar:\n ${listaTareas}`));
+            if (tareaUsuario > tareas.length) {
                 alert("Esa tarea no existe.\n" + opciones);
             } else {
-                alert(`Elegiste modificar la tarea: ${tareas[tareaUsuario - 1]}`);
+                alert(`Elegiste modificar la tarea ${tareaUsuario}: ${tareas[tareaUsuario - 1]}`);
                 tareas[tareaUsuario - 1] = prompt("Ingrese la tarea modificada") + "\n";
             }
             break
         case "3":
-            tareaUsuario = Number(prompt(`Ingrese el número de tarea que desea eliminar:\n ${tareas.join('')}`));
-            if (tareaUsuario >= tareas.length) {
+            tareaUsuario = Number(prompt(`Ingrese el número de tarea que desea eliminar:\n ${listaTareas}`));
+            if (tareaUsuario > tareas.length) {
                 alert("Esa tarea no existe.\n" + opciones);
             } else {
                 eliminar = confirm(`Elegiste eliminar la tarea:\n${tareas[tareaUsuario - 1]}
@@ -56,7 +72,7 @@ while (usuarioElige != "5") { // mientras no elija salir
             }
             break
         case "4":
-            alert(`Lista de tareas:\n${tareas.join('')}`);
+            alert(`Lista de tareas:\n${listaTareas}`);
             break
 
         case "5":
