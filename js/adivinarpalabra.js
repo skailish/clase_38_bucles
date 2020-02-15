@@ -4,4 +4,43 @@
 
 // creo array con palabras
 
-const palabras[] =
+
+const palabras = ["programacion", "web", "javascript", "html", "computadora", "codigo"];
+
+// defino la palabra random a adivinar
+let adivina = palabras[Math.round(Math.random() * (palabras.length - 1))];
+// la separo en letras
+let adivinaLetra = adivina.split('');
+
+// defino i para usarlo en el while
+let i = 0;
+let resultado = "";
+
+// Defino el mensaje de sugerencia
+let sugerencia = "Sugerencia: "
+
+
+// pido primer intento
+let usuarioAdivina = prompt("Adivine la palabra");
+
+// bucle para segundo intento +
+while (adivina != usuarioAdivina && resultado != "perdiste") {
+
+    // le voy agregando desde la primer letra de adivinaLetra
+    sugerencia += adivinaLetra[i];
+
+    // sumo 1 a i
+    i++;
+
+    usuarioAdivina = prompt(`Intente nuevamente
+    ${sugerencia}`);
+    if (i === (adivinaLetra.length - 1) && usuarioAdivina != adivina) {
+        resultado = "perdiste";
+    }
+}
+
+if (resultado === "perdiste") {
+    alert("Ha perdido. La palabra era " + adivina);
+} else if (adivina == usuarioAdivina) {
+    alert("Ganaste!!!");
+}
