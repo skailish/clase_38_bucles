@@ -62,12 +62,12 @@ while (usuarioElige != "5") { // mientras no elija salir
             if (tareaUsuario > tareas.length) {
                 alert("Esa tarea no existe.\n" + opciones);
             } else {
-                eliminar = confirm(`Elegiste eliminar la tarea:\n${tareas[tareaUsuario - 1]}
+                eliminar = confirm(`Elegiste eliminar la tarea ${tareaUsuario}: ${tareas[tareaUsuario - 1]}
                 Confirma eliminar?`);
                 if (eliminar === true) {
                     tareas.splice((tareaUsuario - 1), 1);
                 } else {
-                    alert("Acción cancelada")
+                    alert("Acción cancelada");
                 }
             }
             break
